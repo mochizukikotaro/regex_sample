@@ -8,6 +8,8 @@ RSpec.describe RegexSample do
 
     # Check these regexes.
     regexes = [
+      /(foo){3,5}/,
+      /\p{katakana}{2,4}/,
       /foo[abc]?\z/,
       /foo?/,
       /foo\?/,
