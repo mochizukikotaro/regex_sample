@@ -18,9 +18,16 @@ Or install it yourself as:
 
 ```ruby
 require 'regex_sample'
-re = /(a|b)/
-RegexSample.generate(re)
-#=> a or b
+
+RegexSample.generate(/(a|b)/)
+#=> "b"
+
+RegexSample.generate(/foo[0-9]{3,8}(bar|baz|qux)?/)
+#=> "foo87065baz"
+
+# For Japanese
+RegexSample.generate(/foo-\p{katakana}{4}-\p{hiragana}{4}/)
+#=> "foo-ゲホヅヱ-うゐつだ"
 ```
 
 ## Development
