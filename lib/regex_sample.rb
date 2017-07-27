@@ -13,12 +13,14 @@ module RegexSample
     def generate(re)
       times = Proc.new{ $1 * Array(Range.new($2.to_i, $3.to_i)).sample }
 
-      re = re.source if re.respond_to?(:source) # Handle either a Regexp or a String that looks like a Regexp
+      # Do not handle either a Regexp or a String that looks like a Regexp
+      # Only regexp
+      return false unless re.respond_to?(:source)
+
+      re = re.source
       re
       .gsub(/\A\\A/, '')             # Remove \A
       .gsub(/\\z\z/, '')             # Remove \z
-      .gsub(/^\/?\^?/, '')           # Ditch the anchors
-      .gsub(/\$?\/?$/, '')           # Ditch the anchors
       .gsub(/\{(\d+)\}/, '{\1,\1}')  # {2} become {2,2}
       .gsub(/(?<!\\)\?/, '{0,1}')    # ? become {0,1}
       .gsub(/(?<!\\)\+/, '{1,2}')    # Remove +, except \+
@@ -33,6 +35,7 @@ module RegexSample
       .gsub(/\[([^\]]+)\]/) {|match| match.gsub(/(\w\-\w)/) {|range| Array(Range.new(*range.split('-'))).sample } }  # All A-Z inside of [] become C (or X, or .whatever)
       .gsub('\p{katakana}'){ Katakanas.sample }
       .gsub('\p{hiragana}'){ Hiraganas.sample }
+      .gsub(/(?<!\\)\\-/, '-')                      # \- become -, except \\-
       .gsub(/\[([^\]]+)\]/){ $1.split('').sample }  # All [ABC] become B (or A or C)
       .gsub('\d'){ Numbers.sample }
       .gsub('\w'){ Letters.sample }

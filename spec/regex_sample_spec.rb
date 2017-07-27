@@ -22,6 +22,14 @@ RSpec.describe RegexSample do
       /[1-9]+/,
       /\p{katakana}{3,10}/,
       /\p{hiragana}/,
+      /\-/,
+      /[\-]/,
+      /\//,
+      /[\/]/,
+      /\+/,
+      /\A(foo)[0-9]{1,4}[\-\/]{1}[a-z]{2}(baz)\z/,
+      /\d{10}/,
+      /\w{10}/,
     ]
 
     regexes.each do |regex|
