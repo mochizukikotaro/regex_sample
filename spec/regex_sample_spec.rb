@@ -3,40 +3,31 @@ require "spec_helper"
 RSpec.describe RegexSample do
   describe :generate do
 
-    # context /(a|b)/ do
-    #   it 'match' do
-    #     re = RSpec.current_example.metadata[:described_class]
-    #     expect(RegexSample.generate(re)).to match(re)
-    #   end
-    # end
-    #
-    # context /\p{katakana}/ do
-    #   it 'match' do
-    #     re = RSpec.current_example.metadata[:described_class]
-    #     expect(RegexSample.generate(re)).to match(re)
-    #   end
-    # end
-    #
-    # context /\p{hiragana}/ do
-    #   it 'match' do
-    #     re = RSpec.current_example.metadata[:described_class]
-    #     expect(RegexSample.generate(re)).to match(re)
-    #   end
-    # end
-
-    let(:re) { RSpec.current_example.metadata[:described_class] }
+    let(:re) { described_class }
     subject { RegexSample.generate(re) }
 
-    context /(a|b)/ do
-      it { is_expected.to match(re)  }
-    end
+    # Check these regexes.
+    regexes = [
+      /foo[abc]?\z/,
+      /foo?/,
+      /foo\?/,
+      /bar+/,
+      /bar\+/,
+      /foo\?/,
+      /foo\?\z/,
+      /(a|b)/,
+      /[1-9]+/,
+      /\p{katakana}{3,10}/,
+      /\p{hiragana}/,
+    ]
 
-    context /\p{katakana}/ do
-      it { is_expected.to match(re)  }
-    end
-
-    context /\p{hiragana}/ do
-      it { is_expected.to match(re)  }
+    regexes.each do |regex|
+      context regex do
+        it do
+          p RegexSample.generate(re)
+          is_expected.to match(re)
+        end
+      end
     end
 
   end
