@@ -32,7 +32,7 @@ module RegexSample
       .gsub(/(\\p\{hiragana\})\{(\d+),(\d+)\}/) { times.call } # \p{hiragana}{1,2} becomes .\p{hiragana} or \p{hiragana}\p{hiragana}
       .gsub(/(\\?.)\{(\d+),(\d+)\}/)            { times.call } # A{1,2} becomes A or AA or \d{3} becomes .\d\d\d
       .gsub(/\((.*?)\)/){ |match| match.gsub(/[\(\)]/, '').split('|').sample } # (this|that) becomes 'this' or 'that'
-      .gsub(/\[([^\]]+)\]/) {|match| match.gsub(/(\w\-\w)/) {|range| Array(Range.new(*range.split('-'))).sample } }  # All A-Z inside of [] become C (or X, or .whatever)
+      .gsub(/\[([^\]]+)\]/){ |match| match.gsub(/(\w\-\w)/) {|range| Array(Range.new(*range.split('-'))).sample } }  # All A-Z inside of [] become C (or X, or .whatever)
       .gsub('\p{katakana}'){ Katakanas.sample }
       .gsub('\p{hiragana}'){ Hiraganas.sample }
       .gsub(/(?<!\\)\\-/, '-')                      # \- become -, except \\-
