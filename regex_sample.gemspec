@@ -6,12 +6,12 @@ require 'regex_sample/version'
 Gem::Specification.new do |spec|
   spec.name          = "regex_sample"
   spec.version       = RegexSample::VERSION
-  spec.authors       = ["Kotaro Mochizuki"]
+  spec.authors       = ["mochizukikotaro"]
   spec.email         = ["mochizuki@basicinc.jp"]
 
   spec.summary       = %q{Regex to sample value.}
   spec.description   = %q{Regex to sample value.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/mochizukikotaro/regex_sample"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
