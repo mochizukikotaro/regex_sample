@@ -21,6 +21,8 @@ module RegexSample
       re
       .gsub(/\A\\A/, '')             # Remove \A
       .gsub(/\\z\z/, '')             # Remove \z
+      .gsub(/\A\^/, '')              # Remove ^
+      .gsub(/\$\z/, '')              # Remove $
       .gsub(/\{(\d+)\}/, '{\1,\1}')  # {2} become {2,2}
       .gsub(/(?<!\\)\?/, '{0,1}')    # ? become {0,1}
       .gsub(/(?<!\\)\+/, '{1,2}')    # Remove +, except \+
