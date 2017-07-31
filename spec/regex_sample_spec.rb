@@ -12,7 +12,6 @@ RSpec.describe RegexSample do
       /foo\z/,
       /foo$/,
 
-
       # {x,y}
       /(foo){3,8}/,
       /foo{3,8}/,
@@ -23,6 +22,13 @@ RSpec.describe RegexSample do
       /xyz*/,
       /xyz?/,
 
+      # lazy(ungreedy) match
+      /l+?/,
+      /l*?/,
+      /<.+?>/,
+      /<.*?>/,
+      /<\w+?>/,
+      /<\w*?>/,
 
       # (x|y)
       /(a|b)/,

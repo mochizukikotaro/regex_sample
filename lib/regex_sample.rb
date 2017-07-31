@@ -23,6 +23,8 @@ module RegexSample
       .gsub(/\\z\z/, '')             # Remove \z
       .gsub(/\A\^/, '')              # Remove ^
       .gsub(/\$\z/, '')              # Remove $
+      .gsub(/\+\?/, '+')             # +? become +
+      .gsub(/\*\?/, '*')             # *? become *
       .gsub(/\{(\d+)\}/, '{\1,\1}')  # {2} become {2,2}
       .gsub(/(?<!\\)\?/, '{0,1}')    # ? become {0,1}
       .gsub(/(?<!\\)\+/, '{1,2}')    # + become {1,2}
