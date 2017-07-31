@@ -25,9 +25,11 @@ module RegexSample
       .gsub(/\$\z/, '')              # Remove $
       .gsub(/\{(\d+)\}/, '{\1,\1}')  # {2} become {2,2}
       .gsub(/(?<!\\)\?/, '{0,1}')    # ? become {0,1}
-      .gsub(/(?<!\\)\+/, '{1,2}')    # Remove +, except \+
+      .gsub(/(?<!\\)\+/, '{1,2}')    # + become {1,2}
+      .gsub(/(?<!\\)\*/, '{0,2}')    # * become {0,2}
       .gsub(/\\\?/, '?')             # \\? become ?
       .gsub(/\\\+/, '+')             # \\+ become +
+      .gsub(/\\\*/, '*')             # \\* become *
       .gsub(/(\[[^\]]+\])\{(\d+),(\d+)\}/)      { times.call } # [12]{1,2} becomes [12] or [12][12]
       .gsub(/(\([^\)]+\))\{(\d+),(\d+)\}/)      { times.call } # (12|34){1,2} becomes (12|34) or .(12|34)(12|34)
       .gsub(/(\\p\{katakana\})\{(\d+),(\d+)\}/) { times.call } # \p{katakana}{1,2} becomes .\p{katakana} or \p{katakana}\p{katakana}

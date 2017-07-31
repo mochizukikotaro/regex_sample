@@ -12,14 +12,17 @@ RSpec.describe RegexSample do
       /foo\z/,
       /foo$/,
 
+
       # {x,y}
       /(foo){3,8}/,
       /foo{3,8}/,
       /foo{3}/,
 
-      # ?, +, etc.
-      /foo?/,
-      /bar+/,
+      # *, +, ?, etc.
+      /xyz+/,
+      /xyz*/,
+      /xyz?/,
+
 
       # (x|y)
       /(a|b)/,
@@ -32,10 +35,11 @@ RSpec.describe RegexSample do
       /[1-9]{3,8}/,
 
       # Backslash escapes a metacharacters
-      /\?/,
-      /\+/,
-      /\-/,
-      /\//,
+      /\A\?\z/,
+      /\A\+\z/,
+      /\A\*\z/,
+      /\A\-\z/,
+      /\A\/\z/,
       /[\?]/,
       /[\+]/,
       /[\-]/,
@@ -56,6 +60,7 @@ RSpec.describe RegexSample do
 
       # complex
       /\A(foo)[0-9]{1,4}[\-\/]{1}[a-z]{2}(baz)\z/,
+
     ]
 
     let(:re) { described_class }
